@@ -1,0 +1,17 @@
+{
+  "brand": "a2z creation",
+  "nav": [
+    { "label": "Offerings", "href": "/interiors/offerings/modular-interiors" },
+    { "label": "Design Ideas", "href": "/design-ideas/kitchen-designs" },
+    { "label": "Magazine", "href": "/magazine/type/rooms" }
+  ],
+  "topLinks": [
+    { "label": "Book Consultation", "href": "#lead-form" },
+    { "label": "Call Us", "href": "tel:+919999999999" }
+  ],
+  "footerLinks": [
+    { "label": "About", "href": "#" },
+    { "label": "Contact", "href": "#" },
+    { "label": "Privacy", "href": "#" }
+  ]
+}

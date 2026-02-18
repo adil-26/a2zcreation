@@ -1,0 +1,40 @@
+{
+  "hero": {
+    "eyebrow": "Kitchen Design Ideas",
+    "title": "Smart kitchen designs for modern Indian homes",
+    "description": "Browse layout-ready kitchen inspirations across size, style and budget."
+  },
+  "filters": ["L-Shaped", "U-Shaped", "Parallel", "Island", "Open Kitchen", "Small Kitchen"],
+  "cards": [
+    {
+      "title": "Warm Wood Parallel Kitchen",
+      "style": "Parallel",
+      "budget": "Starts at 2.8L"
+    },
+    {
+      "title": "Compact Matte L-Shaped Kitchen",
+      "style": "L-Shaped",
+      "budget": "Starts at 2.2L"
+    },
+    {
+      "title": "Luxury Island Kitchen",
+      "style": "Island",
+      "budget": "Starts at 4.9L"
+    },
+    {
+      "title": "Minimal White Open Kitchen",
+      "style": "Open",
+      "budget": "Starts at 3.1L"
+    },
+    {
+      "title": "Dark Contemporary U-Shaped Kitchen",
+      "style": "U-Shaped",
+      "budget": "Starts at 3.6L"
+    },
+    {
+      "title": "Pastel Compact Kitchen",
+      "style": "Small",
+      "budget": "Starts at 1.9L"
+    }
+  ]
+}

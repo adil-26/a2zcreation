@@ -1,0 +1,332 @@
+{
+  "services": [
+    {
+      "slug": "modular-kitchen",
+      "title": "Modular Kitchen",
+      "summary": "Efficient kitchen layouts with premium finishes, smart storage, and top-grade hardware.",
+      "heroImage": "https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=1400&q=80",
+      "priceRange": "Starts from ₹2.4L",
+      "types": [
+        "L-Shaped",
+        "U-Shaped",
+        "Parallel",
+        "Island Kitchen",
+        "Straight Kitchen"
+      ],
+      "materials": [
+        "BWR Plywood",
+        "Acrylic Shutters",
+        "Laminates",
+        "Quartz Countertop",
+        "Soft-close Hinges"
+      ],
+      "features": [
+        "Modular cabinets",
+        "Chimney & hob integration",
+        "Under-cabinet lighting",
+        "Pull-out baskets",
+        "Tall unit storage"
+      ],
+      "gallery": [
+        "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1556909172-54557c7e4fb7?w=800&q=80&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1565538810643-b5bdb714032a?w=800&q=80&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80&auto=format&fit=crop"
+      ]
+    },
+    {
+      "slug": "wardrobe-design",
+      "title": "Wardrobe Design",
+      "summary": "Modular wardrobes optimized for aesthetics, smart storage, and long-lasting quality.",
+      "heroImage": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1400&q=80",
+      "priceRange": "Starts from ₹1.2L",
+      "types": [
+        "Sliding Door",
+        "Hinged Door",
+        "Walk-in Wardrobe",
+        "Loft Wardrobe"
+      ],
+      "materials": [
+        "Plywood Core",
+        "Glass Shutters",
+        "Mirror Panels",
+        "Acrylic Finish",
+        "Veneer"
+      ],
+      "features": [
+        "Customized compartments",
+        "Shoe rack integration",
+        "Tie & belt holders",
+        "Soft-close drawers",
+        "LED interior lighting"
+      ],
+      "gallery": [
+        "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1616594039964-ae85a6a6d945?w=800&q=80&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&q=80&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1616594039964-ae85a6a6d945?w=800&q=80&auto=format&fit=crop"
+      ]
+    },
+    {
+      "slug": "living-room-design",
+      "title": "Living Room Design",
+      "summary": "Statement living spaces with functional entertainment zones and premium aesthetics.",
+      "heroImage": "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=1400&q=80",
+      "priceRange": "Starts from ₹2.0L",
+      "types": [
+        "Modern",
+        "Minimal",
+        "Luxury",
+        "Contemporary",
+        "Classic"
+      ],
+      "materials": [
+        "Veneer",
+        "Fluted Panels",
+        "Fabric Walls",
+        "Decor Lighting",
+        "Stone Cladding"
+      ],
+      "features": [
+        "TV unit design",
+        "False ceiling with lighting",
+        "Sofa & seating layout",
+        "Feature wall",
+        "Entertainment zone"
+      ],
+      "gallery": [
+        "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800&q=80&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800&q=80&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&q=80&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80&auto=format&fit=crop"
+      ]
+    },
+    {
+      "slug": "bedroom-design",
+      "title": "Bedroom Design",
+      "summary": "Personalized bedrooms designed for comfort, luxury, and smart storage solutions.",
+      "heroImage": "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=1400&q=80",
+      "priceRange": "Starts from ₹1.6L",
+      "types": [
+        "Master Bedroom",
+        "Guest Bedroom",
+        "Kids Bedroom",
+        "Teen Bedroom"
+      ],
+      "materials": [
+        "Upholstery",
+        "PU Polish",
+        "Laminate",
+        "Textured Paint",
+        "Wallpaper"
+      ],
+      "features": [
+        "Bed with storage",
+        "Wardrobe integration",
+        "Study nook",
+        "False ceiling",
+        "Ambient lighting"
+      ],
+      "gallery": [
+        "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&q=80&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1616594039964-3f3b7f3f10f2?w=800&q=80&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1616594039964-3f3b7f3f10f2?w=800&q=80&auto=format&fit=crop"
+      ]
+    },
+    {
+      "slug": "full-home-interior",
+      "title": "Full Home Interiors",
+      "summary": "End-to-end interior design and execution for complete homes — from concept to move-in.",
+      "heroImage": "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1400&q=80",
+      "priceRange": "Starts from ₹6.8L",
+      "types": [
+        "2BHK",
+        "3BHK",
+        "4BHK",
+        "Villa",
+        "Penthouse"
+      ],
+      "materials": [
+        "Premium Laminates",
+        "Veneer",
+        "PU Finish",
+        "Metal Accents",
+        "Quartz & Marble"
+      ],
+      "features": [
+        "Complete design planning",
+        "3D visualization",
+        "45-day delivery",
+        "10-year warranty",
+        "Dedicated project manager"
+      ],
+      "gallery": [
+        "https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800&q=80&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&q=80&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800&q=80&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80&auto=format&fit=crop"
+      ]
+    },
+    {
+      "slug": "office-interiors",
+      "title": "Office Interiors",
+      "summary": "Professional workspaces designed to boost productivity, reflect your brand, and impress clients.",
+      "heroImage": "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1400&q=80",
+      "priceRange": "Starts from ₹8.0L",
+      "types": [
+        "Corporate Office",
+        "Co-working Space",
+        "Startup Studio",
+        "Retail Store",
+        "Clinic/Salon"
+      ],
+      "materials": [
+        "Glass Partitions",
+        "Acoustic Panels",
+        "Engineered Wood",
+        "Metal & Steel",
+        "Branded Signage"
+      ],
+      "features": [
+        "Workstation planning",
+        "Conference room design",
+        "Reception area",
+        "Breakout zones",
+        "Cable management"
+      ],
+      "gallery": [
+        "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=800&q=80&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=800&q=80&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&q=80&auto=format&fit=crop"
+      ]
+    }
+  ],
+  "designIdeas": [
+    {
+      "room": "kitchen",
+      "items": [
+        {
+          "title": "Warm Parallel Kitchen",
+          "budget": "2.8L - 3.4L",
+          "style": "Modern"
+        },
+        {
+          "title": "Soft Matte L-Kitchen",
+          "budget": "2.2L - 2.9L",
+          "style": "Minimal"
+        },
+        {
+          "title": "Open Island Kitchen",
+          "budget": "4.5L - 6.0L",
+          "style": "Luxury"
+        }
+      ]
+    },
+    {
+      "room": "bedroom",
+      "items": [
+        {
+          "title": "Muted Luxury Bedroom",
+          "budget": "1.9L - 2.6L",
+          "style": "Luxury"
+        },
+        {
+          "title": "Space Saving Bedroom",
+          "budget": "1.4L - 2.0L",
+          "style": "Compact"
+        },
+        {
+          "title": "Smart Storage Bedroom",
+          "budget": "1.8L - 2.4L",
+          "style": "Functional"
+        }
+      ]
+    },
+    {
+      "room": "living-room",
+      "items": [
+        {
+          "title": "Premium TV Feature Wall",
+          "budget": "1.3L - 2.0L",
+          "style": "Modern"
+        },
+        {
+          "title": "Minimal Living Lounge",
+          "budget": "1.1L - 1.8L",
+          "style": "Minimal"
+        },
+        {
+          "title": "Statement Hall Design",
+          "budget": "2.5L - 3.6L",
+          "style": "Luxury"
+        }
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "slug": "noida-luxury-3bhk",
+      "title": "Luxury 3BHK in Noida",
+      "city": "Noida",
+      "budget": "12L",
+      "area": "1700 sqft",
+      "testimonial": "Execution quality and planning were excellent."
+    },
+    {
+      "slug": "mumbai-compact-2bhk",
+      "title": "Compact 2BHK in Mumbai",
+      "city": "Mumbai",
+      "budget": "8.4L",
+      "area": "980 sqft",
+      "testimonial": "Great space optimization in every room."
+    },
+    {
+      "slug": "delhi-corporate-office",
+      "title": "Corporate Office in Delhi",
+      "city": "Delhi",
+      "budget": "24L",
+      "area": "4200 sqft",
+      "testimonial": "Workplace design improved both function and brand feel."
+    }
+  ],
+  "cities": [
+    {
+      "slug": "delhi",
+      "name": "Delhi",
+      "coverage": "NCR-wide consultation and execution support"
+    },
+    {
+      "slug": "mumbai",
+      "name": "Mumbai",
+      "coverage": "All major suburbs with local design teams"
+    },
+    {
+      "slug": "noida",
+      "name": "Noida",
+      "coverage": "Noida and Greater Noida premium service coverage"
+    }
+  ],
+  "blogs": [
+    {
+      "slug": "kitchen-lighting-guide-2026",
+      "title": "Kitchen Lighting Guide 2026",
+      "excerpt": "How to layer task and ambient lighting for modern kitchens.",
+      "content": "Use layered lighting with under-cabinet task lights, pendant accents and warm ambient ceiling lights."
+    },
+    {
+      "slug": "small-bedroom-storage-ideas",
+      "title": "Small Bedroom Storage Ideas",
+      "excerpt": "Create a clutter-free bedroom with smart storage plans.",
+      "content": "Use floor-to-ceiling wardrobes, hydraulic beds and niche shelves for better storage in compact rooms."
+    },
+    {
+      "slug": "office-interior-productivity-layout",
+      "title": "Office Layouts That Improve Productivity",
+      "excerpt": "A practical guide for workstation, focus rooms and collaboration zones.",
+      "content": "Balance open collaboration zones with sound-controlled focus rooms and ergonomic workstations."
+    }
+  ],
+  "leads": []
+}

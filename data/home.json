@@ -1,0 +1,34 @@
+{
+  "hero": {
+    "eyebrow": "India's trusted interior platform",
+    "title": "Home interiors designed for your lifestyle and budget",
+    "description": "From first consultation to final handover, A2Z Creation delivers end-to-end interiors for homes and offices.",
+    "bullets": [
+      "Modular and full-home interiors",
+      "Transparent pricing and quality checks",
+      "Dedicated project designer and manager"
+    ],
+    "ctaPrimary": "Book free consultation",
+    "ctaSecondary": "Explore modular interiors"
+  },
+  "stats": [
+    { "value": "10K+", "label": "Happy Clients" },
+    { "value": "250+", "label": "Design Experts" },
+    { "value": "35+", "label": "Cities Served" },
+    { "value": "10 Years", "label": "Warranty Promise" }
+  ],
+  "offerings": [
+    {
+      "title": "Modular Interiors",
+      "description": "Functional kitchens, wardrobes and storage solutions tailored for everyday usage."
+    },
+    {
+      "title": "Full Home Interiors",
+      "description": "Turnkey interior service from concept, civil, carpentry and decor to final styling."
+    },
+    {
+      "title": "Renovation Services",
+      "description": "Upgrade old homes and offices with modern layouts, material and finishes."
+    }
+  ]
+}

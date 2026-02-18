@@ -1,0 +1,30 @@
+{
+  "hero": {
+    "eyebrow": "Interiors | Offerings",
+    "title": "Modular interiors crafted for performance and elegance",
+    "description": "Design-driven modular kitchen, wardrobe and storage systems with factory finish quality."
+  },
+  "highlights": [
+    "Factory-finished modules for consistency",
+    "Custom fit layouts for every room size",
+    "Soft-close hardware and branded accessories",
+    "Fast installation and strong after-sales support"
+  ],
+  "packages": [
+    {
+      "name": "Essential",
+      "price": "From 2.4L",
+      "features": "Laminate finishes, standard hardware, efficient layout planning."
+    },
+    {
+      "name": "Premium",
+      "price": "From 3.6L",
+      "features": "Improved finishes, tandem systems, better accessory integration."
+    },
+    {
+      "name": "Luxury",
+      "price": "From 5.2L",
+      "features": "High-end materials, advanced fittings, personalized detailing."
+    }
+  ]
+}

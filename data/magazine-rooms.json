@@ -1,0 +1,34 @@
+{
+  "hero": {
+    "eyebrow": "Magazine | Rooms",
+    "title": "Fresh room design stories and practical interior guides",
+    "description": "Actionable ideas for living rooms, bedrooms, kitchens and office spaces."
+  },
+  "categories": ["Living Room", "Bedroom", "Kitchen", "Dining", "Kids Room", "Home Office"],
+  "articles": [
+    {
+      "title": "18 Living Room Lighting Ideas for 2026",
+      "excerpt": "Layered lighting combinations that make your space look premium and cozy."
+    },
+    {
+      "title": "Modern Bedroom Wardrobe Trends",
+      "excerpt": "Sliding, hinged and loft wardrobe concepts with real storage planning tips."
+    },
+    {
+      "title": "How to Design a Productive Home Office",
+      "excerpt": "Desk ergonomics, storage and acoustic ideas for work-from-home productivity."
+    },
+    {
+      "title": "Small Dining Space Layout Hacks",
+      "excerpt": "Space-saving table and bench options for compact apartments."
+    },
+    {
+      "title": "Best Kitchen Color Palettes",
+      "excerpt": "Timeless kitchen palettes that stay elegant for years."
+    },
+    {
+      "title": "Kids Room Safety + Style Checklist",
+      "excerpt": "A practical room planning guide for growing children."
+    }
+  ]
+}
