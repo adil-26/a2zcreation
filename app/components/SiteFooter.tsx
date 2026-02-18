@@ -80,10 +80,10 @@ export default function SiteFooter() {
               {[
                 { label: "Modular Kitchen", href: "/services/modular-kitchen" },
                 { label: "Wardrobe Design", href: "/services/wardrobe-design" },
-                { label: "Living Room", href: "/services/living-room" },
-                { label: "Bedroom Design", href: "/services/bedroom" },
-                { label: "Full Home Interiors", href: "/services/full-home" },
-                { label: "Office Interiors", href: "/services/office" },
+                { label: "Living Room", href: "/services/living-room-design" },
+                { label: "Bedroom Design", href: "/services/bedroom-design" },
+                { label: "Full Home Interiors", href: "/services/full-home-interior" },
+                { label: "Office Interiors", href: "/services/office-interiors" },
                 { label: "Cost Calculator", href: "/interior-cost-calculator" },
               ].map((item) => (
                 <li key={item.href}>

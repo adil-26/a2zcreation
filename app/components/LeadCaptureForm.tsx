@@ -8,15 +8,17 @@ export default function LeadCaptureForm() {
 
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    // Read form data BEFORE any await — currentTarget becomes null after async
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    const name = String(formData.get("name") || "there").trim();
     setIsLoading(true);
     await new Promise((resolve) => setTimeout(resolve, 1200));
-    const formData = new FormData(event.currentTarget);
-    const name = String(formData.get("name") || "there").trim();
     setIsLoading(false);
     setSubmitted(true);
     setTimeout(() => {
       setSubmitted(false);
-      (event.target as HTMLFormElement).reset();
+      form.reset();
     }, 4000);
   }
 
