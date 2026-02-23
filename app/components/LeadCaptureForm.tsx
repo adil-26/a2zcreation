@@ -39,8 +39,15 @@ export default function LeadCaptureForm() {
       });
 
       if (!response.ok) {
-        const errData = await response.json().catch(() => ({}));
-        throw new Error(errData.error || "Failed to submit lead");
+        const text = await response.text();
+        let errorMessage = "Failed to submit lead";
+        try {
+          const json = JSON.parse(text);
+          errorMessage = json.error || json.message || text || errorMessage;
+        } catch {
+          errorMessage = text || errorMessage;
+        }
+        throw new Error(errorMessage);
       }
 
       setSubmitted(true);

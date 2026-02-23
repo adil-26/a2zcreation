@@ -14,19 +14,26 @@ function getSupabaseClient() {
 
 export async function GET() {
     try {
+        // Check if we just want a heartbeat or version
+        if (typeof window === "undefined") {
+            // Heartbeat/Diagnostic
+            console.log("Leads API accessed via GET");
+        }
+
         const supabase = getSupabaseClient();
         if (supabase) {
             const { data, error } = await supabase.from("leads").select("*").order("created_at", { ascending: false });
             if (error) throw error;
-            return NextResponse.json(data);
+            return NextResponse.json({ leads: data, v: "1.0.4" });
         }
 
         // Fallback to local db.json
         const raw = await readFile(dbPath, "utf8");
         const db = JSON.parse(raw);
-        return NextResponse.json(db.leads || []);
+        return NextResponse.json({ leads: db.leads || [], v: "1.0.4-local" });
     } catch (error: any) {
-        return NextResponse.json({ error: error.message }, { status: 500 });
+        console.error("GET Leads Error:", error);
+        return NextResponse.json({ error: error.message, v: "1.0.4-err" }, { status: 500 });
     }
 }
 
