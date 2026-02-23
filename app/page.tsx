@@ -24,18 +24,17 @@ const INTERIOR_IMAGES = {
 
 const SERVICES_DATA = [
   { title: "Modular Kitchen", slug: "modular-kitchen", img: INTERIOR_IMAGES.kitchen, desc: "Smart storage solutions with premium finishes for your dream kitchen." },
-  { title: "Bedroom Design", slug: "bedroom", img: INTERIOR_IMAGES.bedroom, desc: "Serene, stylish bedrooms crafted for comfort and elegance." },
-  { title: "Living Room", slug: "living-room", img: INTERIOR_IMAGES.living, desc: "Statement living spaces that reflect your personality and taste." },
+  { title: "Bedroom Design", slug: "bedroom-design", img: INTERIOR_IMAGES.bedroom, desc: "Serene, stylish bedrooms crafted for comfort and elegance." },
+  { title: "Living Room", slug: "living-room-design", img: INTERIOR_IMAGES.living, desc: "Statement living spaces that reflect your personality and taste." },
   { title: "Wardrobe Design", slug: "wardrobe-design", img: INTERIOR_IMAGES.wardrobe, desc: "Custom wardrobes maximizing space with beautiful organization." },
-  { title: "Bathroom Design", slug: "bathroom", img: INTERIOR_IMAGES.bathroom, desc: "Spa-like bathrooms with premium fixtures and elegant finishes." },
-  { title: "Office Interiors", slug: "office", img: INTERIOR_IMAGES.office, desc: "Productive, inspiring workspaces designed for modern professionals." },
+  { title: "Full Home Interior", slug: "full-home-interior", img: INTERIOR_IMAGES.hero, desc: "End-to-end interior design and execution for complete homes." },
+  { title: "Office Interiors", slug: "office-interiors", img: INTERIOR_IMAGES.office, desc: "Productive, inspiring workspaces designed for modern professionals." },
 ];
 
 const PROJECTS_DATA = [
-  { title: "Modern Villa, Noida", area: "2800 sq.ft", city: "Noida", slug: "modern-villa-noida", img: INTERIOR_IMAGES.project1 },
-  { title: "Luxury Apartment, Gurgaon", area: "1600 sq.ft", city: "Gurgaon", slug: "luxury-apt-gurgaon", img: INTERIOR_IMAGES.project2 },
-  { title: "Contemporary Home, Delhi", area: "2200 sq.ft", city: "Delhi", slug: "contemporary-delhi", img: INTERIOR_IMAGES.project3 },
-  { title: "Premium Penthouse, Noida", area: "3500 sq.ft", city: "Noida", slug: "penthouse-noida", img: INTERIOR_IMAGES.project4 },
+  { title: "Luxury 3BHK, Noida", area: "1700 sq.ft", city: "Noida", slug: "noida-luxury-3bhk", img: INTERIOR_IMAGES.project1 },
+  { title: "Compact 2BHK, Mumbai", area: "980 sq.ft", city: "Mumbai", slug: "mumbai-compact-2bhk", img: INTERIOR_IMAGES.project2 },
+  { title: "Corporate Office, Delhi", area: "4200 sq.ft", city: "Delhi", slug: "delhi-corporate-office", img: INTERIOR_IMAGES.project3 },
 ];
 
 const TESTIMONIALS = [
