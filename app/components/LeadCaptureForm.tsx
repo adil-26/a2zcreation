@@ -1,14 +1,40 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
+
+type UtmData = {
+  utm_source: string | null;
+  utm_medium: string | null;
+  utm_campaign: string | null;
+  utm_content: string | null;
+  utm_term: string | null;
+};
 
 export default function LeadCaptureForm() {
   const [isLoading, setIsLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [utmData, setUtmData] = useState<UtmData>({
+    utm_source: null,
+    utm_medium: null,
+    utm_campaign: null,
+    utm_content: null,
+    utm_term: null,
+  });
   const router = useRouter();
-  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const params = new URLSearchParams(window.location.search);
+    setUtmData({
+      utm_source: params.get("utm_source"),
+      utm_medium: params.get("utm_medium"),
+      utm_campaign: params.get("utm_campaign"),
+      utm_content: params.get("utm_content"),
+      utm_term: params.get("utm_term"),
+    });
+  }, []);
 
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -21,11 +47,7 @@ export default function LeadCaptureForm() {
       city: formData.get("city"),
       budget: formData.get("budget"),
       serviceType: formData.get("serviceType"),
-      utm_source: searchParams.get("utm_source"),
-      utm_medium: searchParams.get("utm_medium"),
-      utm_campaign: searchParams.get("utm_campaign"),
-      utm_content: searchParams.get("utm_content"),
-      utm_term: searchParams.get("utm_term"),
+      ...utmData,
     };
 
     setIsLoading(true);

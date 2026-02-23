@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import LeadCaptureForm from "../../../components/LeadCaptureForm";
 import SiteFooter from "../../../components/SiteFooter";
 import SiteHeader from "../../../components/SiteHeader";
@@ -44,7 +45,9 @@ export default function ModularInteriorsPage() {
               ))}
             </div>
           </div>
-          <LeadCaptureForm />
+          <Suspense fallback={<div className="bg-white rounded-2xl shadow-2xl p-6 text-sm text-gray-500">Loading form...</div>}>
+            <LeadCaptureForm />
+          </Suspense>
         </section>
       </main>
       <SiteFooter />
