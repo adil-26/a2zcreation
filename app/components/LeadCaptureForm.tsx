@@ -2,12 +2,13 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export default function LeadCaptureForm() {
   const [isLoading, setIsLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const router = useRouter();
+  const searchParams = useSearchParams();
 
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -20,6 +21,11 @@ export default function LeadCaptureForm() {
       city: formData.get("city"),
       budget: formData.get("budget"),
       serviceType: formData.get("serviceType"),
+      utm_source: searchParams.get("utm_source"),
+      utm_medium: searchParams.get("utm_medium"),
+      utm_campaign: searchParams.get("utm_campaign"),
+      utm_content: searchParams.get("utm_content"),
+      utm_term: searchParams.get("utm_term"),
     };
 
     setIsLoading(true);

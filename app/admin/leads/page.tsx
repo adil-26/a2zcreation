@@ -16,6 +16,8 @@ interface Lead {
     budget: string;
     status: string;
     date: string;
+    utm_source?: string;
+    utm_campaign?: string;
 }
 
 export default function AdminLeadsPage() {
@@ -82,6 +84,7 @@ export default function AdminLeadsPage() {
                                     <th className="px-4 py-3 rounded-l-lg">Name</th>
                                     <th className="px-4 py-3">Contact</th>
                                     <th className="px-4 py-3">Requirement</th>
+                                    <th className="px-4 py-3">Attribution</th>
                                     <th className="px-4 py-3">Status</th>
                                     <th className="px-4 py-3 rounded-r-lg">Date</th>
                                 </tr>
@@ -119,6 +122,12 @@ export default function AdminLeadsPage() {
                                                 <div className="font-medium text-gray-900">{lead.service}</div>
                                                 <div className="text-xs text-gray-500 flex items-center gap-1 mt-0.5">
                                                     <MapPin className="w-3 h-3" /> {lead.city} • {lead.budget}
+                                                </div>
+                                            </td>
+                                            <td className="px-4 py-4">
+                                                <div className="text-xs font-medium text-gray-900">{lead.utm_source || "Direct"}</div>
+                                                <div className="text-[10px] text-gray-500 truncate max-w-[120px]" title={lead.utm_campaign}>
+                                                    {lead.utm_campaign || "-"}
                                                 </div>
                                             </td>
                                             <td className="px-4 py-4">
