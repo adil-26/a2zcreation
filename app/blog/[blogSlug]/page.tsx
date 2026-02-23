@@ -5,8 +5,13 @@ import { getBlogBySlug, getBlogs } from "../../../lib/repository";
 import { notFound } from "next/navigation";
 
 export async function generateStaticParams() {
-  const blogs = await getBlogs();
-  return blogs.map((item) => ({ blogSlug: item.slug }));
+  try {
+    const blogs = await getBlogs();
+    return blogs.map((item) => ({ blogSlug: item.slug }));
+  } catch (error) {
+    console.error("generateStaticParams(blog) failed, using empty params:", error);
+    return [];
+  }
 }
 
 export default async function BlogDetailPage({ params }: { params: Promise<{ blogSlug: string }> }) {

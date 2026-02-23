@@ -5,8 +5,13 @@ import { getCities, getCityBySlug } from "../../../lib/repository";
 import { notFound } from "next/navigation";
 
 export async function generateStaticParams() {
-  const rows = await getCities();
-  return rows.map((item) => ({ city: item.slug }));
+  try {
+    const rows = await getCities();
+    return rows.map((item) => ({ city: item.slug }));
+  } catch (error) {
+    console.error("generateStaticParams(city) failed, using empty params:", error);
+    return [];
+  }
 }
 
 export default async function CityPage({ params }: { params: Promise<{ city: string }> }) {

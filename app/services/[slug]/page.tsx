@@ -6,8 +6,13 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 
 export async function generateStaticParams() {
-  const services = await getServices();
-  return services.map((item: any) => ({ slug: item.slug }));
+  try {
+    const services = await getServices();
+    return services.map((item: any) => ({ slug: item.slug }));
+  } catch (error) {
+    console.error("generateStaticParams(service) failed, using empty params:", error);
+    return [];
+  }
 }
 
 // Per-service accent images (multiple curated shots per service)

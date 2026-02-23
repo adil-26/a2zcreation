@@ -5,8 +5,13 @@ import { getProjectBySlug, getProjects } from "../../../lib/repository";
 import { notFound } from "next/navigation";
 
 export async function generateStaticParams() {
-  const projects = await getProjects();
-  return projects.map((item) => ({ projectSlug: item.slug }));
+  try {
+    const projects = await getProjects();
+    return projects.map((item) => ({ projectSlug: item.slug }));
+  } catch (error) {
+    console.error("generateStaticParams(project) failed, using empty params:", error);
+    return [];
+  }
 }
 
 export default async function ProjectPage({ params }: { params: Promise<{ projectSlug: string }> }) {
