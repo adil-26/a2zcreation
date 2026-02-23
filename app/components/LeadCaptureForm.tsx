@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 
 export default function LeadCaptureForm() {
   const [isLoading, setIsLoading] = useState(false);
@@ -185,9 +186,17 @@ export default function LeadCaptureForm() {
             )}
           </button>
 
-          <p className="text-xs text-gray-400 text-center">
-            🔒 Your information is safe with us. No spam, ever.
-          </p>
+          <div className="text-center space-y-2">
+            <p className="text-xs text-gray-400">
+              🔒 Your information is safe with us. No spam, ever.
+            </p>
+            <p className="text-[10px] text-gray-400">
+              By submitting, you agree to our{" "}
+              <Link href="/privacy" className="text-[#e75f52] hover:underline">Privacy Policy</Link>{" "}
+              and{" "}
+              <Link href="/terms" className="text-[#e75f52] hover:underline">Terms</Link>.
+            </p>
+          </div>
         </form>
       </div>
     </div>
