@@ -4,16 +4,28 @@ import path from "path";
 import { createClient } from "@supabase/supabase-js";
 
 const dbPath = path.join(process.cwd(), "data", "db.json");
+export const runtime = "nodejs";
 
 function getSupabaseClient() {
     try {
-        const url = process.env.SUPABASE_URL;
-        const key = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY;
+        const url = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
+        const key =
+            process.env.SUPABASE_SERVICE_ROLE_KEY ||
+            process.env.SUPABASE_ANON_KEY ||
+            process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
         if (!url || !key) return null;
         return createClient(url, key, { auth: { persistSession: false } });
     } catch (e) {
         return null;
     }
+}
+
+async function appendLeadToLocalDb(lead: Record<string, any>) {
+    const raw = await readFile(dbPath, "utf8").catch(() => "{\"leads\":[]}");
+    const db = JSON.parse(raw || "{\"leads\":[]}");
+    if (!Array.isArray(db.leads)) db.leads = [];
+    db.leads.unshift(lead);
+    await writeFile(dbPath, JSON.stringify(db, null, 2), "utf8");
 }
 
 export async function GET() {
@@ -78,29 +90,31 @@ export async function POST(req: NextRequest) {
         if (supabase) {
             try {
                 const { data, error } = await supabase.from("leads").insert([{ ...baseLead, ...utmFields }]).select();
-                if (!error) return NextResponse.json(data[0]);
+                if (!error && Array.isArray(data) && data[0]) return NextResponse.json(data[0], { status: 201 });
 
-                if (error.code === "42703") {
+                if (error?.code === "42703") {
                     const { data: bData, error: bErr } = await supabase.from("leads").insert([baseLead]).select();
-                    if (!bErr) return NextResponse.json(bData[0]);
+                    if (!bErr && Array.isArray(bData) && bData[0]) return NextResponse.json(bData[0], { status: 201 });
                 }
             } catch (supaErr) {
                 console.error("Supabase fail-safe hit");
             }
         }
 
-        // 4. File-system attempt (Silent fallback for read-only hosts like Vercel)
+        // 4. File-system attempt
         try {
-            const raw = await readFile(dbPath, "utf8").catch(() => "{\"leads\":[]}");
-            const db = JSON.parse(raw || "{\"leads\":[]}");
-            if (!db.leads) db.leads = [];
-            db.leads.unshift(fullLead);
-            await writeFile(dbPath, JSON.stringify(db, null, 2), "utf8").catch(() => { });
+            await appendLeadToLocalDb(fullLead);
+            return NextResponse.json(fullLead, { status: 201 });
         } catch (fsErr) {
-            // Silently skip if writing fails
+            const message = fsErr instanceof Error ? fsErr.message : "Local write failed";
+            return NextResponse.json(
+                {
+                    error: "Lead storage is not configured. Add Supabase env vars on production.",
+                    detail: message,
+                },
+                { status: 503 }
+            );
         }
-
-        return NextResponse.json(fullLead);
 
     } catch (fatal: any) {
         return new NextResponse(

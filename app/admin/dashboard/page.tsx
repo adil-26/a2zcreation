@@ -38,8 +38,19 @@ export default function AdminDashboardPage() {
                 const leadsData = await leadsRes.json();
                 const projectsData = await projectsRes.json();
 
-                setLeads(leadsData);
-                setProjectsCount(projectsData.length);
+                const normalizedLeads: Lead[] = Array.isArray(leadsData)
+                    ? leadsData
+                    : Array.isArray(leadsData?.leads)
+                        ? leadsData.leads
+                        : [];
+                const normalizedProjects = Array.isArray(projectsData)
+                    ? projectsData
+                    : Array.isArray(projectsData?.projects)
+                        ? projectsData.projects
+                        : [];
+
+                setLeads(normalizedLeads);
+                setProjectsCount(normalizedProjects.length);
             } catch (error) {
                 console.error("Dashboard fetch error:", error);
             } finally {

@@ -12,7 +12,7 @@ export async function GET() {
         },
         cwd: process.cwd(),
         db_path: path.join(process.cwd(), "data", "db.json"),
-        fs_check: false,
+        fs_check: false as boolean | string,
     };
 
     try {

@@ -35,7 +35,12 @@ export default function AdminLeadsPage() {
         try {
             const response = await fetch("/api/leads");
             const data = await response.json();
-            setLeads(data);
+            const normalizedLeads: Lead[] = Array.isArray(data)
+                ? data
+                : Array.isArray(data?.leads)
+                    ? data.leads
+                    : [];
+            setLeads(normalizedLeads);
         } catch (error) {
             console.error("Failed to fetch leads:", error);
         } finally {
