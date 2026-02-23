@@ -160,28 +160,6 @@ export default async function HomePage() {
           </div>
         </section>
 
-        {/* ─── TRUST BAR ─── */}
-        <section className="bg-white border-b border-gray-100">
-          <div className="container mx-auto px-4 py-6">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              {[
-                { icon: "🏆", label: "10-Year Warranty", sub: "On all materials" },
-                { icon: "🏠", label: "500+ Projects", sub: "Across Delhi NCR" },
-                { icon: "🎯", label: "Free Site Visit", sub: "No charges ever" },
-                { icon: "⚡", label: "45-Day Delivery", sub: "Guaranteed timeline" },
-              ].map((item) => (
-                <div key={item.label} className="flex items-center gap-3 py-2">
-                  <span className="text-2xl">{item.icon}</span>
-                  <div>
-                    <p className="font-bold text-gray-900 text-sm">{item.label}</p>
-                    <p className="text-gray-400 text-xs">{item.sub}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
         {/* ─── SERVICES ─── */}
         <section className="py-24 bg-[#faf8f6]">
           <div className="container mx-auto px-4">
@@ -278,6 +256,28 @@ export default async function HomePage() {
                   </button>
                 </a>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ─── TRUST BAR (Why Choose Us) ─── */}
+        <section className="bg-white border-b border-gray-100">
+          <div className="container mx-auto px-4 py-6">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+              {[
+                { icon: "🏆", label: "10-Year Warranty", sub: "On all materials" },
+                { icon: "🏠", label: "500+ Projects", sub: "Across Delhi NCR" },
+                { icon: "🎯", label: "Free Site Visit", sub: "No charges ever" },
+                { icon: "⚡", label: "45-Day Delivery", sub: "Guaranteed timeline" },
+              ].map((item) => (
+                <div key={item.label} className="flex items-center gap-3 py-2">
+                  <span className="text-2xl">{item.icon}</span>
+                  <div>
+                    <p className="font-bold text-gray-900 text-sm">{item.label}</p>
+                    <p className="text-gray-400 text-xs">{item.sub}</p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </section>
