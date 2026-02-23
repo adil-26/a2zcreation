@@ -38,11 +38,12 @@ export async function POST(req: NextRequest) {
             utm_source, utm_medium, utm_campaign, utm_content, utm_term
         } = body;
 
+        console.log("--- New Lead Submission ---");
+        console.log("Lead info:", { name, phone, city, serviceType });
+
         if (!name || !phone) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
         }
-
-        console.log("Processing lead for:", name, city);
 
         const newLead = {
             id: Date.now(),
@@ -63,9 +64,17 @@ export async function POST(req: NextRequest) {
 
         const supabase = getSupabaseClient();
         if (supabase) {
-            const { data, error } = await supabase.from("leads").insert([newLead]).select();
-            if (error) throw error;
-            return NextResponse.json(data[0]);
+            try {
+                const { data, error } = await supabase.from("leads").insert([newLead]).select();
+                if (error) {
+                    console.error("Supabase Insert Error:", error.message);
+                    // If Supabase fails (e.g. missing columns), fallback to local db
+                } else {
+                    return NextResponse.json(data[0]);
+                }
+            } catch (supaErr: any) {
+                console.error("Supabase Exception:", supaErr.message);
+            }
         }
 
         // Fallback to local db.json
@@ -77,6 +86,7 @@ export async function POST(req: NextRequest) {
 
         return NextResponse.json(newLead);
     } catch (error: any) {
-        return NextResponse.json({ error: error.message }, { status: 500 });
+        console.error("Critical API Error:", error.message);
+        return NextResponse.json({ error: error.message || "Internal Server Error" }, { status: 500 });
     }
 }
