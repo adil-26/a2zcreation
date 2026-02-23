@@ -14,35 +14,31 @@ export interface DesignIdea { room: string;[key: string]: any; }
 export interface Lead { id: number;[key: string]: any; }
 
 async function readLocalDb() {
-  const raw = await readFile(dbPath, "utf8");
-  return JSON.parse(raw);
-}
-
-function getSupabaseClient() {
-  const url = process.env.SUPABASE_URL;
-  const key = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY;
-  if (!url || !key) return null;
-  return createClient(url, key, { auth: { persistSession: false } });
+  try {
+    const raw = await readFile(dbPath, "utf8");
+    return JSON.parse(raw);
+  } catch (err) {
+    console.error("Local DB read failed:", err);
+    return {};
+  }
 }
 
 async function fetchTable<T = any>(table: string): Promise<T[]> {
-  const supabase = getSupabaseClient();
-  if (!supabase) {
-    const local = await readLocalDb();
-    return (local[table] as T[]) || [];
+  try {
+    const supabase = getSupabaseClient();
+    if (supabase) {
+      const { data, error } = await supabase.from(table).select("*");
+      if (!error && data) return data as T[];
+
+      console.warn(`Supabase ${table} fetch failed, using local fallback. Error:`, error?.message);
+    }
+  } catch (err) {
+    console.error(`Supabase ${table} exception:`, err);
   }
 
-  try {
-    const { data, error } = await supabase.from(table).select("*");
-    if (error) {
-      const local = await readLocalDb();
-      return (local[table] as T[]) || [];
-    }
-    return (data as T[]) || [];
-  } catch {
-    const local = await readLocalDb();
-    return (local[table] as T[]) || [];
-  }
+  // Fallback to local DB
+  const local = await readLocalDb();
+  return (local[table] as T[]) || [];
 }
 
 export async function getServices() {
