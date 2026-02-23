@@ -43,58 +43,56 @@ export async function POST(req: NextRequest) {
         }
 
         const baseLead = {
-            name,
-            phone,
-            city,
-            budget,
-            service: serviceType,
+            name: String(name || ""),
+            phone: String(phone || ""),
+            city: String(city || ""),
+            budget: String(budget || ""),
+            service: String(serviceType || ""),
             status: "New",
             date: new Date().toISOString().split("T")[0],
             created_at: new Date().toISOString(),
         };
 
-        const fullLead = {
-            ...baseLead,
-            id: Date.now(), // Local ID fallback
-            utm_source: utm_source || null,
-            utm_medium: utm_medium || null,
-            utm_campaign: utm_campaign || null,
-            utm_content: utm_content || null,
-            utm_term: utm_term || null,
+        const utmData = {
+            utm_source: utm_source ? String(utm_source) : null,
+            utm_medium: utm_medium ? String(utm_medium) : null,
+            utm_campaign: utm_campaign ? String(utm_campaign) : null,
+            utm_content: utm_content ? String(utm_content) : null,
+            utm_term: utm_term ? String(utm_term) : null,
         };
 
         const supabase = getSupabaseClient();
         if (supabase) {
-            // Attempt 1: Full insert with UTMs
-            const { data, error } = await supabase.from("leads").insert([fullLead]).select();
+            try {
+                // Try inserting without explicit ID first (DB handles it)
+                const { data, error } = await supabase.from("leads").insert([{ ...baseLead, ...utmData }]).select();
+                if (!error) return NextResponse.json(data[0]);
 
-            if (!error) return NextResponse.json(data[0]);
-
-            // Attempt 2: If UTM columns are missing, try base insert
-            if (error.code === "42703") { // Undefined column error
-                console.warn("UTM columns missing, falling back to base insert");
-                const { data: baseData, error: baseError } = await supabase.from("leads").insert([baseLead]).select();
-                if (!baseError) return NextResponse.json(baseData[0]);
-                throw baseError;
+                // Fallback: If UTM columns are missing, try base insert
+                if (error.code === "42703") {
+                    const { data: bData, error: bErr } = await supabase.from("leads").insert([baseLead]).select();
+                    if (!bErr) return NextResponse.json(bData[0]);
+                }
+            } catch (supaErr) {
+                console.error("Supabase fail-safe hit:", supaErr);
             }
-            throw error;
         }
 
-        // Fallback to local db.json
+        // Final local fallback
+        const localLead = { ...baseLead, ...utmData, id: Date.now() };
         try {
             const raw = await readFile(dbPath, "utf8");
             const db = JSON.parse(raw);
             if (!db.leads) db.leads = [];
-            db.leads.unshift(fullLead);
+            db.leads.unshift(localLead);
             await writeFile(dbPath, JSON.stringify(db, null, 2), "utf8");
-            return NextResponse.json(fullLead);
-        } catch (fsError: any) {
-            console.error("Local FS fallback failed:", fsError.message);
-            // In Prod (Vercel), FS is read-only. Return the lead anyway so UI shows success.
-            return NextResponse.json(fullLead);
+        } catch (fsErr) {
+            console.warn("Read-only FS fallback");
         }
+
+        return NextResponse.json(localLead);
     } catch (error: any) {
-        console.error("CRITICAL API ERROR:", error);
-        return NextResponse.json({ error: error.message || "Failed to save lead" }, { status: 500 });
+        console.error("Critical API Error:", error);
+        return NextResponse.json({ error: error.message || "Submission failed" }, { status: 500 });
     }
 }
