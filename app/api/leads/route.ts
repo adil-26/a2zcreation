@@ -88,18 +88,24 @@ export async function POST(req: NextRequest) {
         // Final local fallback
         const localLead = { ...baseLead, ...utmData, id: Date.now() };
         try {
-            const raw = await readFile(dbPath, "utf8");
-            const db = JSON.parse(raw);
+            const raw = await readFile(dbPath, "utf8").catch(() => "{}");
+            const db = JSON.parse(raw || "{}");
             if (!db.leads) db.leads = [];
             db.leads.unshift(localLead);
-            await writeFile(dbPath, JSON.stringify(db, null, 2), "utf8");
+            await writeFile(dbPath, JSON.stringify(db, null, 2), "utf8").catch(() => { });
         } catch (fsErr) {
-            console.warn("Read-only FS fallback");
+            console.warn("Local storage deferred (read-only FS)");
         }
 
         return NextResponse.json(localLead);
     } catch (error: any) {
-        console.error("Critical API Error:", error);
-        return NextResponse.json({ error: error.message || "Submission failed" }, { status: 500 });
+        console.error("LEADS_POST_FATAL:", error);
+        return new NextResponse(
+            JSON.stringify({
+                error: error.message || "Submission failed",
+                trace: "LEADS_POST_ERROR"
+            }),
+            { status: 500, headers: { "Content-Type": "application/json" } }
+        );
     }
 }
