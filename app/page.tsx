@@ -119,7 +119,7 @@ export default async function HomePage() {
 
                 {/* Phone CTA */}
                 <a
-                  href="tel:+918375852594"
+                  href="tel:+919289163952"
                   className="inline-flex items-center gap-3 group"
                 >
                   <div className="w-12 h-12 rounded-2xl bg-white/10 border border-white/15 flex items-center justify-center group-hover:bg-[#e75f52]/20 group-hover:border-[#e75f52]/30 transition-all">
@@ -129,7 +129,7 @@ export default async function HomePage() {
                   </div>
                   <div>
                     <p className="text-white/40 text-xs uppercase tracking-wider">Call us now</p>
-                    <p className="text-white font-bold text-lg group-hover:text-[#e75f52] transition-colors">+91 83758 52594</p>
+                    <p className="text-white font-bold text-lg group-hover:text-[#e75f52] transition-colors">+91 92891 63952</p>
                   </div>
                 </a>
 
@@ -269,12 +269,12 @@ export default async function HomePage() {
                     Calculate My Budget
                   </button>
                 </Link>
-                <a href="tel:+918375852594">
+                <a href="tel:+919289163952">
                   <button className="px-10 py-4 bg-white/8 border border-white/15 text-white font-semibold text-base rounded-2xl hover:bg-white/15 transition-all duration-300 flex items-center gap-2">
                     <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                     </svg>
-                    Call: 83758 52594
+                    Call: 92891 63952
                   </button>
                 </a>
               </div>
@@ -457,12 +457,12 @@ export default async function HomePage() {
                       Get Free Quote Now
                     </button>
                   </a>
-                  <a href="tel:+918375852594">
+                  <a href="tel:+919289163952">
                     <button className="px-10 py-4 bg-white/8 border border-white/15 text-white font-bold text-lg rounded-2xl hover:bg-white/15 transition-all duration-300 flex items-center gap-2">
                       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                       </svg>
-                      83758 52594
+                      92891 63952
                     </button>
                   </a>
                 </div>
@@ -476,7 +476,7 @@ export default async function HomePage() {
       <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3">
         {/* WhatsApp */}
         <a
-          href="https://wa.me/918375852594"
+          href="https://wa.me/919289163952"
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center justify-center w-14 h-14 bg-green-500 rounded-2xl text-white shadow-xl shadow-green-500/40 hover:scale-110 hover:shadow-green-500/60 transition-all duration-300"
@@ -488,7 +488,7 @@ export default async function HomePage() {
         </a>
         {/* Call */}
         <a
-          href="tel:+918375852594"
+          href="tel:+919289163952"
           className="flex items-center justify-center w-14 h-14 bg-[#e75f52] rounded-2xl text-white shadow-xl shadow-[#e75f52]/40 hover:scale-110 hover:shadow-[#e75f52]/60 transition-all duration-300"
           title="Call Us"
         >

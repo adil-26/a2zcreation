@@ -53,7 +53,8 @@ const config: Config = {
                 brand: {
                     DEFAULT: "#e75f52",
                     dark: "#cb493e",
-                    light: "#fde2d7"
+                    light: "#fde2d7",
+                    teal: "#2a7f82"
                 },
                 ink: "#1f2328",
                 line: "#eadfd6",

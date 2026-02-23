@@ -11,7 +11,7 @@ export default function SiteFooter() {
           {/* Brand Column */}
           <div className="lg:col-span-1 space-y-5">
             <Link href="/" className="flex items-center gap-3 group">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#e75f52] to-[#cb493e] flex items-center justify-center shadow-lg">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#e75f52] to-[#2A7F82] flex items-center justify-center shadow-lg">
                 <span className="text-white font-bold text-lg">A</span>
               </div>
               <div className="flex flex-col leading-none">
@@ -109,27 +109,27 @@ export default function SiteFooter() {
                     <MapPin className="w-4 h-4 text-[#e75f52]" />
                   </div>
                   <span className="text-white/50 text-sm leading-relaxed">
-                    Sector 62, Noida,<br />Uttar Pradesh, India
+                    P-65 Jamia Nagar New Friends Colony,<br />Delhi, India, 110025
                   </span>
                 </div>
               </li>
               <li>
-                <a href="tel:+918375852594" className="flex gap-3 items-center group">
+                <a href="tel:+919289163952" className="flex gap-3 items-center group">
                   <div className="w-8 h-8 rounded-lg bg-[#e75f52]/10 flex items-center justify-center shrink-0">
                     <Phone className="w-4 h-4 text-[#e75f52]" />
                   </div>
                   <span className="text-white/50 text-sm group-hover:text-[#e75f52] transition-colors font-medium">
-                    +91 83758 52594
+                    +91 92891 63952
                   </span>
                 </a>
               </li>
               <li>
-                <a href="mailto:hello@a2zcreation.in" className="flex gap-3 items-center group">
+                <a href="mailto:rumanaa2zcreation@gmail.com" className="flex gap-3 items-center group">
                   <div className="w-8 h-8 rounded-lg bg-[#e75f52]/10 flex items-center justify-center shrink-0">
                     <Mail className="w-4 h-4 text-[#e75f52]" />
                   </div>
                   <span className="text-white/50 text-sm group-hover:text-[#e75f52] transition-colors">
-                    hello@a2zcreation.in
+                    rumanaa2zcreation@gmail.com
                   </span>
                 </a>
               </li>
@@ -137,7 +137,7 @@ export default function SiteFooter() {
 
             {/* WhatsApp CTA */}
             <a
-              href="https://wa.me/918375852594"
+              href="https://wa.me/919289163952"
               target="_blank"
               rel="noopener noreferrer"
               className="mt-6 flex items-center gap-2 px-4 py-2.5 bg-green-500/10 border border-green-500/20 rounded-xl text-green-400 text-sm font-semibold hover:bg-green-500/20 transition-colors"

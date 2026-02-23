@@ -1,18 +1,51 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/app/components/ui/Card";
 import { Button } from "@/app/components/ui/Button";
 import { Input } from "@/app/components/ui/Input";
-import { Search, Filter, Phone, Mail, MapPin } from "lucide-react";
+import { Search, Filter, Phone, Mail, MapPin, Loader2 } from "lucide-react";
 
-const leads = [
-    { id: 1, name: "Rahul Sharma", phone: "9876543210", email: "rahul@gmail.com", city: "Noida", service: "Modular Kitchen", budget: "5-10L", status: "New", date: "2024-02-18" },
-    { id: 2, name: "Priya Singh", phone: "9988776655", email: "priya@yahoo.com", city: "Delhi", service: "Full Home", budget: "20L+", status: "Contacted", date: "2024-02-17" },
-    { id: 3, name: "Amit Verma", phone: "8899776655", email: "amit@outlook.com", city: "Gurgaon", service: "Wardrobes", budget: "Under 5L", status: "Closed", date: "2024-02-16" },
-    // Add more dummy data
-];
+interface Lead {
+    id: number;
+    name: string;
+    phone: string;
+    email?: string;
+    city: string;
+    service: string;
+    budget: string;
+    status: string;
+    date: string;
+}
 
 export default function AdminLeadsPage() {
+    const [leads, setLeads] = useState<Lead[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [searchTerm, setSearchTerm] = useState("");
+
+    useEffect(() => {
+        fetchLeads();
+    }, []);
+
+    async function fetchLeads() {
+        try {
+            const response = await fetch("/api/leads");
+            const data = await response.json();
+            setLeads(data);
+        } catch (error) {
+            console.error("Failed to fetch leads:", error);
+        } finally {
+            setLoading(false);
+        }
+    }
+
+    const filteredLeads = leads.filter(lead =>
+        lead.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        lead.phone.includes(searchTerm) ||
+        lead.city.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        lead.service.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
     return (
         <div className="space-y-8">
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
@@ -21,6 +54,9 @@ export default function AdminLeadsPage() {
                     <p className="text-gray-500">Track and manage your incoming enquiries.</p>
                 </div>
                 <div className="flex gap-2 w-full md:w-auto">
+                    <Button onClick={fetchLeads} variant="outline" size="sm" disabled={loading}>
+                        {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : "Refresh"}
+                    </Button>
                     <Button>Download CSV</Button>
                 </div>
             </div>
@@ -29,7 +65,12 @@ export default function AdminLeadsPage() {
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-4">
                     <div className="relative w-full max-w-sm">
                         <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
-                        <Input placeholder="Search leads..." className="pl-9 h-10 bg-gray-50 border-none" />
+                        <Input
+                            placeholder="Search leads..."
+                            className="pl-9 h-10 bg-gray-50 border-none"
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                        />
                     </div>
                     <Button variant="outline" size="sm"><Filter className="w-4 h-4 mr-2" /> Filter</Button>
                 </CardHeader>
@@ -46,36 +87,53 @@ export default function AdminLeadsPage() {
                                 </tr>
                             </thead>
                             <tbody className="divide-y divide-gray-100">
-                                {leads.map((lead) => (
-                                    <tr key={lead.id} className="hover:bg-gray-50/50 transition-colors">
-                                        <td className="px-4 py-4 font-medium text-gray-900">
-                                            {lead.name}
-                                            <div className="md:hidden text-xs text-gray-500 mt-1">{lead.phone}</div>
-                                        </td>
-                                        <td className="px-4 py-4 text-gray-500">
-                                            <div className="flex flex-col gap-1">
-                                                <div className="flex items-center gap-2"><Phone className="w-3 h-3" /> {lead.phone}</div>
-                                                <div className="flex items-center gap-2"><Mail className="w-3 h-3" /> {lead.email}</div>
+                                {loading ? (
+                                    <tr>
+                                        <td colSpan={5} className="px-4 py-8 text-center text-gray-500">
+                                            <div className="flex flex-col items-center gap-2">
+                                                <Loader2 className="w-6 h-6 animate-spin text-brand" />
+                                                <span>Loading leads...</span>
                                             </div>
-                                        </td>
-                                        <td className="px-4 py-4">
-                                            <div className="font-medium text-gray-900">{lead.service}</div>
-                                            <div className="text-xs text-gray-500 flex items-center gap-1 mt-0.5">
-                                                <MapPin className="w-3 h-3" /> {lead.city} • {lead.budget}
-                                            </div>
-                                        </td>
-                                        <td className="px-4 py-4">
-                                            <span className={`px-2 py-1 rounded-full text-xs font-bold 
-                                           ${lead.status === 'New' ? 'bg-green-100 text-green-700' :
-                                                    lead.status === 'Contacted' ? 'bg-blue-100 text-blue-700' : 'bg-gray-100 text-gray-700'}`}>
-                                                {lead.status}
-                                            </span>
-                                        </td>
-                                        <td className="px-4 py-4 text-gray-500 whitespace-nowrap">
-                                            {lead.date}
                                         </td>
                                     </tr>
-                                ))}
+                                ) : filteredLeads.length === 0 ? (
+                                    <tr>
+                                        <td colSpan={5} className="px-4 py-8 text-center text-gray-500">
+                                            No leads found.
+                                        </td>
+                                    </tr>
+                                ) : (
+                                    filteredLeads.map((lead) => (
+                                        <tr key={lead.id} className="hover:bg-gray-50/50 transition-colors">
+                                            <td className="px-4 py-4 font-medium text-gray-900">
+                                                {lead.name}
+                                                <div className="md:hidden text-xs text-gray-500 mt-1">{lead.phone}</div>
+                                            </td>
+                                            <td className="px-4 py-4 text-gray-500">
+                                                <div className="flex flex-col gap-1">
+                                                    <div className="flex items-center gap-2"><Phone className="w-3 h-3" /> {lead.phone}</div>
+                                                    {lead.email && <div className="flex items-center gap-2"><Mail className="w-3 h-3" /> {lead.email}</div>}
+                                                </div>
+                                            </td>
+                                            <td className="px-4 py-4">
+                                                <div className="font-medium text-gray-900">{lead.service}</div>
+                                                <div className="text-xs text-gray-500 flex items-center gap-1 mt-0.5">
+                                                    <MapPin className="w-3 h-3" /> {lead.city} • {lead.budget}
+                                                </div>
+                                            </td>
+                                            <td className="px-4 py-4">
+                                                <span className={`px-2 py-1 rounded-full text-xs font-bold 
+                                               ${lead.status === 'New' ? 'bg-green-100 text-green-700' :
+                                                        lead.status === 'Contacted' ? 'bg-blue-100 text-blue-700' : 'bg-gray-100 text-gray-700'}`}>
+                                                    {lead.status}
+                                                </span>
+                                            </td>
+                                            <td className="px-4 py-4 text-gray-500 whitespace-nowrap">
+                                                {lead.date}
+                                            </td>
+                                        </tr>
+                                    ))
+                                )}
                             </tbody>
                         </table>
                     </div>

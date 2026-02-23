@@ -37,10 +37,10 @@ export default function SiteHeader() {
         <div className="container mx-auto px-4 flex justify-between items-center">
           <div className="flex gap-6">
             <a
-              href="tel:+918375852594"
+              href="tel:+919289163952"
               className="flex items-center gap-1.5 opacity-80 hover:opacity-100 transition-opacity hover:text-[#e75f52]"
             >
-              <Phone className="w-3 h-3" /> +91 83758 52594
+              <Phone className="w-3 h-3" /> +91 92891 63952
             </a>
             <span className="flex items-center gap-1.5 opacity-80">
               <MapPin className="w-3 h-3" /> New Delhi, India
@@ -49,8 +49,8 @@ export default function SiteHeader() {
           <div className="flex gap-6 text-white/70">
             <span>Mon–Sat: 10am – 7pm</span>
             <span>|</span>
-            <a href="mailto:hello@a2zcreation.in" className="hover:text-[#e75f52] transition-colors">
-              hello@a2zcreation.in
+            <a href="mailto:rumanaa2zcreation@gmail.com" className="hover:text-[#e75f52] transition-colors">
+              rumanaa2zcreation@gmail.com
             </a>
           </div>
         </div>
@@ -68,7 +68,7 @@ export default function SiteHeader() {
         <div className="container mx-auto px-4 h-[72px] flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#e75f52] to-[#cb493e] flex items-center justify-center shadow-lg shadow-[#e75f52]/30 group-hover:scale-105 transition-transform">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#e75f52] to-[#2A7F82] flex items-center justify-center shadow-lg shadow-[#e75f52]/30 group-hover:scale-105 transition-transform">
               <span className="text-white font-bold text-lg leading-none">A</span>
             </div>
             <div className="flex flex-col leading-none">
@@ -102,16 +102,16 @@ export default function SiteHeader() {
           {/* CTA */}
           <div className="hidden lg:flex items-center gap-3">
             <a
-              href="tel:+918375852594"
+              href="tel:+919289163952"
               className="flex items-center gap-2 text-sm font-semibold text-[#1a1a2e] hover:text-[#e75f52] transition-colors"
             >
               <div className="w-8 h-8 rounded-full bg-[#e75f52]/10 flex items-center justify-center">
                 <Phone className="w-3.5 h-3.5 text-[#e75f52]" />
               </div>
-              <span>83758 52594</span>
+              <span>92891 63952</span>
             </a>
             <Link href="/contact">
-              <button className="px-5 py-2.5 bg-gradient-to-r from-[#e75f52] to-[#cb493e] text-white text-sm font-bold rounded-xl shadow-lg shadow-[#e75f52]/25 hover:shadow-xl hover:shadow-[#e75f52]/30 hover:-translate-y-0.5 transition-all duration-200">
+              <button className="px-5 py-2.5 bg-gradient-to-r from-[#e75f52] to-[#2A7F82] text-white text-sm font-bold rounded-xl shadow-lg shadow-[#e75f52]/25 hover:shadow-xl hover:shadow-[#e75f52]/30 hover:-translate-y-0.5 transition-all duration-200">
                 Get Free Quote
               </button>
             </Link>
@@ -157,10 +157,10 @@ export default function SiteHeader() {
               </nav>
               <div className="flex flex-col gap-3">
                 <a
-                  href="tel:+918375852594"
+                  href="tel:+919289163952"
                   className="flex items-center justify-center gap-2 py-3 border-2 border-[#e75f52] text-[#e75f52] font-bold rounded-xl"
                 >
-                  <Phone className="w-4 h-4" /> Call: 83758 52594
+                  <Phone className="w-4 h-4" /> Call: 92891 63952
                 </a>
                 <Link href="/contact" onClick={() => setMobileMenuOpen(false)}>
                   <button className="w-full py-3 bg-gradient-to-r from-[#e75f52] to-[#cb493e] text-white font-bold rounded-xl">

@@ -8,18 +8,42 @@ export default function LeadCaptureForm() {
 
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    // Read form data BEFORE any await — currentTarget becomes null after async
     const form = event.currentTarget;
     const formData = new FormData(form);
-    const name = String(formData.get("name") || "there").trim();
+
+    const data = {
+      name: formData.get("name"),
+      phone: formData.get("phone"),
+      city: formData.get("city"),
+      budget: formData.get("budget"),
+      serviceType: formData.get("serviceType"),
+    };
+
     setIsLoading(true);
-    await new Promise((resolve) => setTimeout(resolve, 1200));
-    setIsLoading(false);
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      form.reset();
-    }, 4000);
+    try {
+      const response = await fetch("/api/leads", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to submit lead");
+      }
+
+      setSubmitted(true);
+      setTimeout(() => {
+        setSubmitted(false);
+        form.reset();
+      }, 4000);
+    } catch (error) {
+      console.error("Submission error:", error);
+      alert("Something went wrong. Please try again or call us.");
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   if (submitted) {
@@ -32,7 +56,7 @@ export default function LeadCaptureForm() {
         </div>
         <h3 className="text-xl font-bold text-gray-900 mb-2">Thank You!</h3>
         <p className="text-gray-500 text-sm">Our A2Z Creation team will call you within 24 hours.</p>
-        <p className="text-[#e75f52] font-bold mt-3 text-sm">Or call us now: +91 83758 52594</p>
+        <p className="text-[#e75f52] font-bold mt-3 text-sm">Or call us now: +91 92891 63952</p>
       </div>
     );
   }
@@ -40,7 +64,7 @@ export default function LeadCaptureForm() {
   return (
     <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
       {/* Form Header */}
-      <div className="bg-gradient-to-r from-[#e75f52] to-[#cb493e] px-6 py-5">
+      <div className="bg-gradient-to-r from-[#e75f52] to-[#2A7F82] px-6 py-5">
         <div className="flex items-center gap-3 mb-1">
           <div className="w-2 h-2 rounded-full bg-white/60 animate-pulse" />
           <span className="text-white/80 text-xs font-medium uppercase tracking-wider">Free Consultation</span>
