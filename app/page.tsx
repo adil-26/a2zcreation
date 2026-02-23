@@ -375,6 +375,49 @@ export default async function HomePage() {
           </div>
         </section>
 
+        {/* ─── SEARCH / LEAD FORM SECTION ─── */}
+        <section className="py-24 bg-[#faf8f6]">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <div className="bg-white rounded-[32px] shadow-2xl overflow-hidden border border-gray-100 flex flex-col md:flex-row">
+                <div className="md:w-1/2 p-10 md:p-12 bg-gradient-to-br from-[#1a1a2e] to-[#0f0f1a] text-white flex flex-col justify-center">
+                  <span className="inline-block px-4 py-1.5 bg-[#e75f52]/20 text-[#e75f52] text-xs font-bold uppercase tracking-widest rounded-full mb-6 max-w-fit">
+                    Free Consultation
+                  </span>
+                  <h2 className="text-3xl md:text-4xl font-bold mb-6 leading-tight">
+                    Let's Start Your <br />
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#e75f52] to-[#C5A059]">
+                      Transformation
+                    </span>
+                  </h2>
+                  <p className="text-white/60 mb-8 leading-relaxed">
+                    Ready to bring your dream home to life? Fill out the form, and our lead designer will call you back to discuss your vision.
+                  </p>
+                  <div className="space-y-4">
+                    {[
+                      "45-Day Delivery Commitment",
+                      "10-Year Warranty on Materials",
+                      "Free Expert Site Visit"
+                    ].map((item, i) => (
+                      <div key={i} className="flex items-center gap-3">
+                        <div className="w-5 h-5 rounded-full bg-green-500/20 flex items-center justify-center">
+                          <svg className="w-3 h-3 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                          </svg>
+                        </div>
+                        <span className="text-sm font-medium text-white/80">{item}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="md:w-1/2 p-8 md:p-10 bg-white">
+                  <LeadCaptureForm />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* ─── TESTIMONIALS ─── */}
         <section className="py-24 bg-white">
           <div className="container mx-auto px-4">
