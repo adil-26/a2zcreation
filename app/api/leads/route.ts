@@ -42,6 +42,8 @@ export async function POST(req: NextRequest) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
         }
 
+        console.log("Processing lead for:", name, city);
+
         const newLead = {
             id: Date.now(),
             name,
