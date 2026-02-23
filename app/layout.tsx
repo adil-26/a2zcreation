@@ -36,6 +36,18 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${fraunces.variable} ${outfit.variable}`}>
       <body className="antialiased bg-background text-foreground font-sans selection:bg-brand/20 selection:text-brand-dark">
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-G6LRL7E98X"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-G6LRL7E98X');
+          `}
+        </Script>
         {children}
         <Script
           id="fb-pixel"

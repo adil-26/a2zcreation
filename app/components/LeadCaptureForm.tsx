@@ -2,10 +2,12 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function LeadCaptureForm() {
   const [isLoading, setIsLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const router = useRouter();
 
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -35,10 +37,7 @@ export default function LeadCaptureForm() {
       }
 
       setSubmitted(true);
-      setTimeout(() => {
-        setSubmitted(false);
-        form.reset();
-      }, 4000);
+      router.push("/thank-you");
     } catch (error) {
       console.error("Submission error:", error);
       alert("Something went wrong. Please try again or call us.");

@@ -86,11 +86,11 @@ export default async function HomePage() {
                 </div>
 
                 <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.08] tracking-tight">
-                  Design Your
+                  Get Free Interior
                   <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#e75f52] to-[#C5A059]">
-                    Dream Home
+                    Consultation
                   </span>
-                  with A2Z
+                  in Your City
                 </h1>
 
                 <p className="text-white/60 text-lg md:text-xl leading-relaxed max-w-lg">
@@ -101,7 +101,7 @@ export default async function HomePage() {
                 <div className="flex flex-col sm:flex-row gap-4">
                   <a href="#lead-form">
                     <button className="px-8 py-4 bg-gradient-to-r from-[#e75f52] to-[#cb493e] text-white font-bold text-base rounded-2xl shadow-2xl shadow-[#e75f52]/30 hover:shadow-[#e75f52]/50 hover:-translate-y-1 transition-all duration-300 flex items-center gap-2">
-                      Get Free Consultation
+                      Get Free Quote
                       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                       </svg>
