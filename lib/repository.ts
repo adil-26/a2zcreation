@@ -31,9 +31,18 @@ async function fetchTable<T = any>(table: string): Promise<T[]> {
     const local = await readLocalDb();
     return (local[table] as T[]) || [];
   }
-  const { data, error } = await supabase.from(table).select("*");
-  if (error) throw new Error(`Supabase ${table} fetch failed: ${error.message}`);
-  return (data as T[]) || [];
+
+  try {
+    const { data, error } = await supabase.from(table).select("*");
+    if (error) {
+      const local = await readLocalDb();
+      return (local[table] as T[]) || [];
+    }
+    return (data as T[]) || [];
+  } catch {
+    const local = await readLocalDb();
+    return (local[table] as T[]) || [];
+  }
 }
 
 export async function getServices() {
