@@ -4,7 +4,8 @@ import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/app/components/ui/Card";
 import { Button } from "@/app/components/ui/Button";
 import { Input } from "@/app/components/ui/Input";
-import { Search, Filter, Phone, Mail, MapPin, Loader2 } from "lucide-react";
+import { Search, Filter, Phone, Mail, MapPin, Loader2, Link as LinkIcon, X } from "lucide-react";
+import URLBuilder from "../components/URLBuilder";
 
 interface Lead {
     id: number;
@@ -24,6 +25,7 @@ export default function AdminLeadsPage() {
     const [leads, setLeads] = useState<Lead[]>([]);
     const [loading, setLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState("");
+    const [showBuilder, setShowBuilder] = useState(false);
 
     useEffect(() => {
         fetchLeads();
@@ -59,9 +61,32 @@ export default function AdminLeadsPage() {
                     <Button onClick={fetchLeads} variant="outline" size="sm" disabled={loading}>
                         {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : "Refresh"}
                     </Button>
-                    <Button>Download CSV</Button>
+                    <Button
+                        variant="outline"
+                        size="sm"
+                        className="bg-brand/5 border-brand/20 text-brand hover:bg-brand/10"
+                        onClick={() => setShowBuilder(true)}
+                    >
+                        <LinkIcon className="w-4 h-4 mr-2" /> Build Tracking Link
+                    </Button>
+                    <Button size="sm">Download CSV</Button>
                 </div>
             </div>
+
+            {/* URL Builder Modal Overlay */}
+            {showBuilder && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-gray-900/60 backdrop-blur-sm">
+                    <div className="relative w-full max-w-2xl animate-in fade-in zoom-in duration-200">
+                        <button
+                            onClick={() => setShowBuilder(false)}
+                            className="absolute -top-12 right-0 p-2 text-white/80 hover:text-white transition-colors"
+                        >
+                            <X className="w-6 h-6" />
+                        </button>
+                        <URLBuilder />
+                    </div>
+                </div>
+            )}
 
             <Card className="border-none shadow-sm">
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-4">
