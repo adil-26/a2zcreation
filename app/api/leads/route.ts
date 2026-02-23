@@ -1,57 +1,60 @@
 import { NextRequest, NextResponse } from "next/server";
-import { readFile, writeFile } from "node:fs/promises";
-import path from "node:path";
+import { readFile, writeFile } from "fs/promises";
+import path from "path";
 import { createClient } from "@supabase/supabase-js";
 
 const dbPath = path.join(process.cwd(), "data", "db.json");
 
 function getSupabaseClient() {
-    const url = process.env.SUPABASE_URL;
-    const key = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY;
-    if (!url || !key) return null;
-    return createClient(url, key, { auth: { persistSession: false } });
+    try {
+        const url = process.env.SUPABASE_URL;
+        const key = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY;
+        if (!url || !key) return null;
+        return createClient(url, key, { auth: { persistSession: false } });
+    } catch (e) {
+        return null;
+    }
 }
 
 export async function GET() {
     try {
-        // Check if we just want a heartbeat or version
-        if (typeof window === "undefined") {
-            // Heartbeat/Diagnostic
-            console.log("Leads API accessed via GET");
-        }
-
         const supabase = getSupabaseClient();
         if (supabase) {
             const { data, error } = await supabase.from("leads").select("*").order("created_at", { ascending: false });
-            if (error) throw error;
-            return NextResponse.json({ leads: data, v: "1.0.4" });
+            if (!error) return NextResponse.json({ leads: data || [], v: "1.0.6" });
         }
 
-        // Fallback to local db.json
-        const raw = await readFile(dbPath, "utf8");
-        const db = JSON.parse(raw);
-        return NextResponse.json({ leads: db.leads || [], v: "1.0.4-local" });
+        const raw = await readFile(dbPath, "utf8").catch(() => "{\"leads\":[]}");
+        const db = JSON.parse(raw || "{\"leads\":[]}");
+        return NextResponse.json({ leads: db.leads || [], v: "1.0.6-fs" });
     } catch (error: any) {
-        console.error("GET Leads Error:", error);
-        return NextResponse.json({ error: error.message, v: "1.0.4-err" }, { status: 500 });
+        return NextResponse.json({ error: error.message, v: "1.0.6-err" }, { status: 500 });
     }
 }
 
 export async function POST(req: NextRequest) {
     try {
-        const body = await req.json();
+        // 1. Safe Body Parse
+        let body: any;
+        try {
+            body = await req.json();
+        } catch (e) {
+            return NextResponse.json({ error: "Invalid JSON body" }, { status: 400 });
+        }
+
         const {
             name, phone, city, budget, serviceType,
             utm_source, utm_medium, utm_campaign, utm_content, utm_term
         } = body;
 
         if (!name || !phone) {
-            return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
+            return NextResponse.json({ error: "Name and Phone required" }, { status: 400 });
         }
 
+        // 2. Lead data preparation
         const baseLead = {
-            name: String(name || ""),
-            phone: String(phone || ""),
+            name: String(name),
+            phone: String(phone),
             city: String(city || ""),
             budget: String(budget || ""),
             service: String(serviceType || ""),
@@ -60,7 +63,7 @@ export async function POST(req: NextRequest) {
             created_at: new Date().toISOString(),
         };
 
-        const utmData = {
+        const utmFields = {
             utm_source: utm_source ? String(utm_source) : null,
             utm_medium: utm_medium ? String(utm_medium) : null,
             utm_campaign: utm_campaign ? String(utm_campaign) : null,
@@ -68,42 +71,42 @@ export async function POST(req: NextRequest) {
             utm_term: utm_term ? String(utm_term) : null,
         };
 
+        const fullLead = { ...baseLead, ...utmFields, id: Date.now() };
+
+        // 3. Database attempt
         const supabase = getSupabaseClient();
         if (supabase) {
             try {
-                // Try inserting without explicit ID first (DB handles it)
-                const { data, error } = await supabase.from("leads").insert([{ ...baseLead, ...utmData }]).select();
+                const { data, error } = await supabase.from("leads").insert([{ ...baseLead, ...utmFields }]).select();
                 if (!error) return NextResponse.json(data[0]);
 
-                // Fallback: If UTM columns are missing, try base insert
                 if (error.code === "42703") {
                     const { data: bData, error: bErr } = await supabase.from("leads").insert([baseLead]).select();
                     if (!bErr) return NextResponse.json(bData[0]);
                 }
             } catch (supaErr) {
-                console.error("Supabase fail-safe hit:", supaErr);
+                console.error("Supabase fail-safe hit");
             }
         }
 
-        // Final local fallback
-        const localLead = { ...baseLead, ...utmData, id: Date.now() };
+        // 4. File-system attempt (Silent fallback for read-only hosts like Vercel)
         try {
-            const raw = await readFile(dbPath, "utf8").catch(() => "{}");
-            const db = JSON.parse(raw || "{}");
+            const raw = await readFile(dbPath, "utf8").catch(() => "{\"leads\":[]}");
+            const db = JSON.parse(raw || "{\"leads\":[]}");
             if (!db.leads) db.leads = [];
-            db.leads.unshift(localLead);
+            db.leads.unshift(fullLead);
             await writeFile(dbPath, JSON.stringify(db, null, 2), "utf8").catch(() => { });
         } catch (fsErr) {
-            console.warn("Local storage deferred (read-only FS)");
+            // Silently skip if writing fails
         }
 
-        return NextResponse.json(localLead);
-    } catch (error: any) {
-        console.error("LEADS_POST_FATAL:", error);
+        return NextResponse.json(fullLead);
+
+    } catch (fatal: any) {
         return new NextResponse(
             JSON.stringify({
-                error: error.message || "Submission failed",
-                trace: "LEADS_POST_ERROR"
+                error: fatal.message || "Fatal Server Error",
+                trace: "API_CRASH_PROTECT"
             }),
             { status: 500, headers: { "Content-Type": "application/json" } }
         );
